@@ -241,6 +241,10 @@ html[data-theme="dark"] .bentoAccent {
   color: #fff !important;
 }
 
+.bentoAccent .bentoCardImage {
+  opacity: 0.95;
+}
+
 /* third-width cards */
 .bentoThird {
   grid-column: span 4;
@@ -399,8 +403,10 @@ html[data-theme="dark"] .bentoLink {
     grid-column: span 3;
   }
 
+  /* Half-width at this breakpoint so the seven cards pair up cleanly:
+     curriculum on its own row, then three rows of two. */
   .bentoThird {
-    grid-column: span 2;
+    grid-column: span 3;
     min-height: 200px;
   }
 
@@ -464,6 +470,404 @@ html[data-theme="dark"] .bentoLink {
   .bentoHalfImage {
     width: 80px;
     height: 80px;
+  }
+}
+
+/* --- RAIL LABEL --- */
+
+/* Left-aligned eyebrow for the card rails. Deliberately lighter than the
+   centered section headers further down the page. */
+.railLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1.25rem;
+}
+
+.railLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+
+html[data-theme="light"] .railLabel {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="light"] .railLabel::after {
+  background: rgba(0, 0, 0, 0.09);
+}
+
+html[data-theme="dark"] .railLabel {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+html[data-theme="dark"] .railLabel::after {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* --- DEV SKILLS BAND --- */
+
+.skillsBand {
+  padding: 1.5rem 0;
+}
+
+html[data-theme="light"] .skillsBand {
+  background: var(--site-color-surface);
+}
+
+html[data-theme="dark"] .skillsBand {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.skillsInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.skillsCopy {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+.skillsBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+html[data-theme="light"] .skillsBadge {
+  background: var(--site-color-brand-blue);
+  color: #fff;
+}
+
+html[data-theme="dark"] .skillsBadge {
+  background: var(--site-color-brand-teal);
+  color: #06231d;
+}
+
+.skillsText {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+html[data-theme="light"] .skillsText {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme="dark"] .skillsText {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.skillsAction {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1 1 26rem;
+  min-width: 0;
+}
+
+/* The pill is a terminal, so it stays dark on the light band */
+html[data-theme="light"] .skillsAction .cliMockup {
+  background: #1a1a1f;
+}
+
+html[data-theme="dark"] .skillsAction .cliMockup {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skillsLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.skillsLink:hover {
+  transform: translateX(4px);
+}
+
+html[data-theme="light"] .skillsLink {
+  color: var(--site-color-brand-blue);
+}
+
+html[data-theme="dark"] .skillsLink {
+  color: var(--site-color-brand-teal);
+}
+
+@media screen and (max-width: 768px) {
+  .skillsCopy,
+  .skillsAction {
+    flex-basis: 100%;
+  }
+}
+
+/* --- COLOUR-BLOCK CARDS --- */
+
+/* Register B: no illustration. A soft corner wash and a tinted mark, both
+   drawn from the card illustration palette, keep these in the same family as
+   the illustrated cards without needing new art. The accent only ever tints
+   backgrounds; glyphs and text use the base ink so contrast holds (coral is
+   ~3.1:1 on white and sand ~1.3:1, neither is safe for text). */
+.blockCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  /* One accent for every card. Per-card colours turned the row into a
+     fruit salad; the tint is here only to lift the mark off the surface. */
+  --block-wash: rgba(0, 51, 173, 0.07);
+  --block-mark: rgba(0, 51, 173, 0.1);
+  --block-shadow: rgba(0, 51, 173, 0.14);
+}
+
+/* Brand blue disappears against the dark surface, so the dark theme borrows
+   the lighter primary the rest of the site already uses */
+html[data-theme="dark"] .blockCard {
+  --block-wash: rgba(102, 132, 206, 0.12);
+  --block-mark: rgba(102, 132, 206, 0.18);
+  --block-shadow: rgba(102, 132, 206, 0.16);
+}
+
+html[data-theme="light"] .blockCard {
+  background: var(--site-color-surface);
+  color: var(--ifm-font-color-base);
+}
+
+html[data-theme="dark"] .blockCard {
+  background: var(--site-color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--ifm-font-color-base);
+}
+
+.blockCard:hover {
+  transform: translateY(-6px);
+}
+
+html[data-theme="light"] .blockCard:hover {
+  box-shadow: 0 20px 60px var(--block-shadow);
+}
+
+html[data-theme="dark"] .blockCard:hover {
+  box-shadow: 0 20px 60px var(--block-shadow);
+  border-color: var(--block-wash);
+}
+
+.blockWash {
+  position: absolute;
+  top: -45%;
+  right: -18%;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--block-wash);
+  pointer-events: none;
+}
+
+.blockMark {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--block-mark);
+}
+
+.blockMark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.blockText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.blockTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.blockDesc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+html[data-theme="light"] .blockDesc {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme="dark"] .blockDesc {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.blockArrow {
+  position: relative;
+  align-self: flex-end;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+html[data-theme="light"] .blockArrow {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .blockArrow {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.blockCard:hover .blockArrow {
+  transform: translateX(4px);
+}
+
+/* variants */
+.blockThird {
+  grid-column: span 4;
+  min-height: 230px;
+}
+
+.blockTall {
+  border-radius: 16px;
+  min-height: 260px;
+}
+
+.blockRow {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 140px;
+}
+
+.blockRow .blockArrow {
+  align-self: center;
+}
+
+.blockTrack {
+  min-height: 168px;
+  padding: 1.25rem;
+}
+
+.blockTrack .blockTitle {
+  font-size: 0.95rem;
+}
+
+.blockTrack .blockDesc {
+  font-size: 0.8rem;
+}
+
+/* Declared after the bento breakpoints, so the block variants restate them */
+@media screen and (max-width: 996px) {
+  .blockThird {
+    grid-column: span 3;
+    min-height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .blockThird {
+    grid-column: span 1;
+    min-height: auto;
+  }
+}
+
+/* --- TRACKS STRIP --- */
+
+.tracks {
+  padding: 0 0 3.5rem;
+}
+
+html[data-theme="light"] .tracks {
+  background: #fff;
+}
+
+html[data-theme="dark"] .tracks {
+  background: var(--site-color-bg-dark);
+}
+
+.tracksGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 996px) {
+  .tracksGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tracksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .blockTrack {
+    min-height: auto;
+  }
+}
+
+/* --- OTHER PATHS --- */
+
+.otherPaths {
+  padding: 0 0 4rem;
+}
+
+html[data-theme="light"] .otherPaths {
+  background: #fff;
+}
+
+html[data-theme="dark"] .otherPaths {
+  background: var(--site-color-bg-dark);
+}
+
+.otherPathsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.otherPathsGrid .bentoHalf {
+  grid-column: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .otherPathsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .blockRow {
+    min-height: auto;
   }
 }
 
@@ -797,6 +1201,25 @@ html[data-theme="dark"] .devLinkCard:hover .devLinkArrow {
   min-width: 0;
 }
 
+/* The devnet card lost its row partner when the AI quickstart moved up to the
+   band, so it takes the full row. Chained selector keeps it winning over the
+   base span regardless of source order. */
+.devQuickstartCard2.devQuickstartFull {
+  grid-column: span 12;
+}
+
+@media screen and (max-width: 996px) {
+  .devQuickstartCard2.devQuickstartFull {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .devQuickstartCard2.devQuickstartFull {
+    grid-column: span 1;
+  }
+}
+
 .quickstartBadge2 {
   font-size: 0.7rem;
   font-weight: 700;
@@ -1030,7 +1453,7 @@ html[data-theme="dark"] .scHeader p {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .scLearnCard,
+  .blockTall,
   .asteriaCard,
   .scCTFCard {
     min-height: 260px;
@@ -1044,107 +1467,6 @@ html[data-theme="dark"] .scHeader p {
 }
 
 /* Smart contracts learn card */
-.scLearnCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border-radius: 16px;
-  overflow: hidden;
-  min-height: 260px;
-  transition: all 0.3s ease;
-}
-
-.scLearnCard:hover {
-  transform: translateY(-6px);
-}
-
-html[data-theme="light"] .scLearnCard:hover {
-  box-shadow: 0 24px 64px rgba(0, 51, 173, 0.15);
-}
-
-html[data-theme="dark"] .scLearnCard:hover {
-  box-shadow: 0 24px 64px rgba(68, 187, 164, 0.15);
-}
-
-.scLearnImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.scLearnOverlay {
-  position: absolute;
-  inset: 0;
-}
-
-html[data-theme="light"] .scLearnOverlay {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 51, 173, 0.1) 0%,
-    rgba(0, 51, 173, 0.6) 50%,
-    rgba(0, 33, 110, 0.95) 100%
-  );
-}
-
-html[data-theme="dark"] .scLearnOverlay {
-  background: linear-gradient(
-    180deg,
-    rgba(68, 187, 164, 0.05) 0%,
-    rgba(20, 40, 50, 0.7) 50%,
-    rgba(15, 25, 35, 0.98) 100%
-  );
-}
-
-.scLearnContent {
-  position: relative;
-  z-index: 1;
-  padding: 1.5rem;
-  color: #fff;
-}
-
-.scLearnContent h3 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin: 0 0 0.4rem;
-  color: #fff;
-}
-
-.scLearnContent > p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  margin: 0 0 0.875rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.scLearnLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.scLearnLinks a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.15);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  color: #fff;
-}
-
-.scLearnLinks a:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
 /* Asteria */
 .asteriaCard {
   position: relative;
@@ -1292,20 +1614,10 @@ html[data-theme="dark"] .scLearnOverlay {
 }
 
 @media screen and (max-width: 576px) {
-  .scLearnCard,
+  .blockTall,
   .asteriaCard,
   .scCTFCard {
     min-height: 220px;
-  }
-
-  .scLearnLinks {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .scLearnLinks a {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.75rem;
   }
 }
 
