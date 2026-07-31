@@ -2128,60 +2128,6 @@ html[data-theme="dark"] .officeHoursBtnSecondary:hover {
   }
 }
 
-/* Portal hero (portalhero.js) */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background-size: auto;
-  background-position: 59% 50%;
-}
-
-html[data-theme="light"] .heroBanner {
-  background-image: url(/img/home/dev-portal-hero-light.webp);
-  background-color: var(--site-color-brand-blue);
-}
-
-html[data-theme="dark"] .heroBanner {
-  background-image: url(/img/home/dev-portal-hero-dark.webp);
-  background-color: var(--site-color-brand-teal-dark);
-}
-
-html[data-theme="light"] .getStarted {
-  color: #fff;
-}
-
-html[data-theme="dark"] .getStarted {
-  color: #000;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media screen and (max-width: 1024px) {
-  .heroBanner {
-    background-position: 34% 50%;
-  }
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-@media screen and (min-width: 1950px) {
-  .heroBanner {
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
 /* --- GLOBAL --- */
 
 @media screen and (max-width: 576px) {
